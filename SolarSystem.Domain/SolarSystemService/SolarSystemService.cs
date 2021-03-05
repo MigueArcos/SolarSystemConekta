@@ -26,17 +26,6 @@ namespace SolarSystem.Domain.SolarSystemService {
 				IsClockWiseRotation = false
 			}
 		};
-
-		public Point GetPlanetPosition(Planet planet, int day) {
-			int clockwiseFactor = planet.IsClockWiseRotation ? 1 : -1;
-			return new Point {
-				X = Math.Cos(day * planet.SpeedDegPerDay * Math.PI / 180 * clockwiseFactor) * planet.DistanceToSunInKm,
-				Y = Math.Sin(day * planet.SpeedDegPerDay * Math.PI / 180 * clockwiseFactor) * planet.DistanceToSunInKm,
-			};
-		}
-		public bool LineTouchOrigin(Point pointA, Point pointB) {
-			return Math.Abs(pointA.X * (pointB.Y - pointA.Y) - pointA.Y * (pointB.X - pointA.X)) <= Constants.MaxDecimalTolerance;
-		}
 		public MeteorologicalConditions GetConditionsForDay(int day) {
 			var meteorologicalConditions = new MeteorologicalConditions {
 				Planets = Planets
@@ -67,6 +56,17 @@ namespace SolarSystem.Domain.SolarSystemService {
 
 		public string GetWeatherForDay(int day) {
 			return GetConditionsForDay(day).Weather;
+		}
+
+		private Point GetPlanetPosition(Planet planet, int day) {
+			int clockwiseFactor = planet.IsClockWiseRotation ? 1 : -1;
+			return new Point {
+				X = Math.Cos(day * planet.SpeedDegPerDay * Math.PI / 180 * clockwiseFactor) * planet.DistanceToSunInKm,
+				Y = Math.Sin(day * planet.SpeedDegPerDay * Math.PI / 180 * clockwiseFactor) * planet.DistanceToSunInKm,
+			};
+		}
+		private bool LineTouchOrigin(Point pointA, Point pointB) {
+			return Math.Abs(pointA.X * (pointB.Y - pointA.Y) - pointA.Y * (pointB.X - pointA.X)) <= Constants.MaxDecimalTolerance;
 		}
 	}
 }
