@@ -12,8 +12,13 @@ namespace SolarSystem.Web.Controllers {
 		}
 
 		[HttpGet("clima")]
-		public string GetWeatherForDay([FromQuery] int? day) {
-			return solarSystemService.GetWeatherForDay(day ?? 0).ToString();
+		public IActionResult GetWeatherForDay([FromQuery] int? day) {
+			return Ok(
+				new {
+					dia = day ?? 0,
+					clima = solarSystemService.GetWeatherForDay(day ?? 0)
+				}
+			);
 		}
 
 		[HttpGet("condiciones")]
