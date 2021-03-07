@@ -2,8 +2,8 @@
 
 namespace SolarSystem.Domain.SolarSystemService {
 	public interface ISolarSystemService {
-		public Planet[] Planets { get; }
-		public string GetWeatherForDay(int day);
-		public MeteorologicalConditions GetConditionsForDay(int day);
+		Planet[] Planets { get; }
+		string GetWeatherForDay(int day);
+		MeteorologicalConditions GetConditionsForDay(int day);
 	}
 }
