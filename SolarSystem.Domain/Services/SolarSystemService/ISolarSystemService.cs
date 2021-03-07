@@ -1,9 +1,9 @@
-﻿using SolarSystem.Domain.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SolarSystem.Domain.Services.SolarSystemService {
 	public interface ISolarSystemService {
-		Planet[] Planets { get; }
-		string GetWeatherForDay(int day);
-		MeteorologicalConditions GetConditionsForDay(int day);
+		Task<string> GetWeatherForDay(int day);
+		Task<Dictionary<string, object>> GetConditionsForDay(int day);
 	}
 }
