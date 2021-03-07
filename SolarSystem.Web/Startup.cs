@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SolarSystem.Domain.SolarSystemService;
+using SolarSystem.Domain.Services.SolarSystemService;
 using Google.Cloud.Firestore;
 using SolarSystem.Domain.DataAccessLayer.UnitOfWork;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SolarSystem.Domain.Models;
-using SolarSystem.Domain.SolarSystemService;
+using SolarSystem.Domain.Services.SolarSystemService;
 
 namespace SolarSystem.Web.Controllers {
 	[ApiController]

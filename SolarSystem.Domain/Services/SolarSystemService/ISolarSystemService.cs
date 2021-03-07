@@ -1,6 +1,6 @@
 ﻿using SolarSystem.Domain.Models;
 
-namespace SolarSystem.Domain.SolarSystemService {
+namespace SolarSystem.Domain.Services.SolarSystemService {
 	public interface ISolarSystemService {
 		Planet[] Planets { get; }
 		string GetWeatherForDay(int day);

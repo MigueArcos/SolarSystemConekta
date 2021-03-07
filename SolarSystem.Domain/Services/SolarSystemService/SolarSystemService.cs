@@ -5,7 +5,7 @@ using SolarSystem.Domain.Models;
 using System;
 using System.Linq;
 
-namespace SolarSystem.Domain.SolarSystemService {
+namespace SolarSystem.Domain.Services.SolarSystemService {
 	public class SolarSystemService : ISolarSystemService {
 		public Planet[] Planets => new Planet[] { 
 			new Planet {
