@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using SolarSystem.Domain.Services.SolarSystemService;
 using Google.Cloud.Firestore;
 using SolarSystem.Domain.DataAccessLayer.UnitOfWork;
+using SolarSystem.Domain.Services.Conditions10YearsService;
 
 namespace SolarSystem.Web {
 	public class Startup {
@@ -24,6 +25,7 @@ namespace SolarSystem.Web {
 			});
 			services.AddScoped<FirestoreDb>(s => FirestoreDb.Create(Configuration.GetValue<string>("Firestore:ProjectId")));
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
+			services.AddScoped<IJobCalculateConditions, JobCalculateConditions>();
 			services.AddScoped<ISolarSystemService, SolarSystemService>();
 			services.AddControllersWithViews().AddJsonOptions(options => {
 				options.JsonSerializerOptions.IgnoreNullValues = true;
