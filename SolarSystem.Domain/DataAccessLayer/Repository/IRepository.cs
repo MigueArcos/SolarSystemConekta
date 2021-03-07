@@ -6,5 +6,6 @@ namespace SolarSystem.Domain.DataAccessLayer.Repository {
 		Task<bool> ClearAll();
 		Task<bool> Create(Dictionary<string, object> model);
 		Task<Dictionary<string, object>> GetById(string id);
+		Task<IList<Dictionary<string, object>>> GetAll();
 	}
 }

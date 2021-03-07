@@ -1,6 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using SolarSystem.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SolarSystem.Domain.DataAccessLayer.Repository {
@@ -35,6 +36,12 @@ namespace SolarSystem.Domain.DataAccessLayer.Repository {
 			QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 			if (querySnapshot.Documents.Count == 0) throw ErrorStatusCode.EntityNotFound;
 			return querySnapshot.Documents[0].ToDictionary();
+		}
+
+		public async Task<IList<Dictionary<string, object>>> GetAll() {
+			QuerySnapshot snapshot = await collection.GetSnapshotAsync();
+			if (snapshot.Documents.Count == 0) throw ErrorStatusCode.EntityNotFound;
+			return snapshot.Documents.Select(d => d.ToDictionary()).ToList();
 		}
 	}
 }
