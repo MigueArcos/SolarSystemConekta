@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SolarSystem.Domain.Models;
 using SolarSystem.Domain.Services.SolarSystemService;
+using System;
+using System.Threading.Tasks;
 
 namespace SolarSystem.Web.Controllers {
 	[ApiController]
-	public class WeatherForecastController : Controller {
+	public class WeatherForecastController : BasicController {
 		private readonly ISolarSystemService solarSystemService;
 
 		public WeatherForecastController(ISolarSystemService solarSystemService) {
@@ -12,20 +13,32 @@ namespace SolarSystem.Web.Controllers {
 		}
 		[Route("")]
 		[HttpGet("clima")]
-		public IActionResult GetWeatherForDay([FromQuery] int? dia) {
-			int day = dia ?? 1;
-			return Ok(
-				new {
-					dia = day,
-					clima = solarSystemService.GetWeatherForDay(day - 1)
-				}
-			);
+		public async Task<IActionResult> GetWeatherForDay([FromQuery] int? dia) {
+			try {
+				int day = dia ?? 1;
+				var weatherOfDay = await solarSystemService.GetWeatherForDay(day);
+				return Ok(
+					new {
+						dia = day,
+						clima = weatherOfDay
+					}
+				);
+			}
+			catch (Exception e) {
+				return DefaultCatch(e);
+			}
 		}
 
 		[HttpGet("condiciones")]
-		public MeteorologicalConditions GetConditionsForDay([FromQuery] int? dia) {
-			int day = dia ?? 1;
-			return solarSystemService.GetConditionsForDay(day - 1);
+		public async Task<IActionResult> GetConditionsForDay([FromQuery] int? dia) {
+			try {
+				int day = dia ?? 1;
+				var meteorologicalConditions = await solarSystemService.GetConditionsForDay(day);
+				return Ok(meteorologicalConditions);
+			}
+			catch (Exception e) {
+				return DefaultCatch(e);
+			}
 		}
 
 		[HttpGet("sistema-solar")]
