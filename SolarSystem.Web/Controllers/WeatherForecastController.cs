@@ -41,6 +41,17 @@ namespace SolarSystem.Web.Controllers {
 			}
 		}
 
+		[HttpGet("resumen-condiciones")]
+		public async Task<IActionResult> GetConditionsSummary() {
+			try {
+				var conditionsSummary = await solarSystemService.GetConditionsSummary();
+				return Ok(conditionsSummary);
+			}
+			catch (Exception e) {
+				return DefaultCatch(e);
+			}
+		}
+
 		[HttpGet("sistema-solar")]
 		public IActionResult SolarSystem() {
 			return View();

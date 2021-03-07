@@ -47,9 +47,7 @@ namespace SolarSystem.Domain.Services.Conditions10YearsService {
 			// Is a triangle
 			else {
 				WeatherType weather = triangle.ContainsPoint(new Point { X = 0, Y = 0 }) ? WeatherType.Rainy : WeatherType.Normal;
-				if (weather == WeatherType.Rainy) {
-					meteorologicalConditions.TrianglePerimeter = triangle.GetPerimeter();
-				}
+				meteorologicalConditions.TrianglePerimeter = triangle.GetPerimeter();
 				meteorologicalConditions.Weather = weather.GetDescription();
 			}
 			return meteorologicalConditions;
