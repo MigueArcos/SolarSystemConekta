@@ -21,7 +21,7 @@ namespace SolarSystem.Web {
 				});
 			});
 			services.AddScoped<ISolarSystemService, SolarSystemService>();
-			services.AddControllers().AddJsonOptions(options => {
+			services.AddControllersWithViews().AddJsonOptions(options => {
 				options.JsonSerializerOptions.IgnoreNullValues = true;
 			});
 		}
@@ -36,12 +36,16 @@ namespace SolarSystem.Web {
 
 			app.UseHttpsRedirection();
 
+			app.UseStaticFiles();
+
 			app.UseRouting();
 
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints => {
-				endpoints.MapControllers();
+				endpoints.MapControllerRoute(
+					name: "default",
+					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
 		}
 	}

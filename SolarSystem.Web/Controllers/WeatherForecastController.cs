@@ -4,7 +4,7 @@ using SolarSystem.Domain.SolarSystemService;
 
 namespace SolarSystem.Web.Controllers {
 	[ApiController]
-	public class WeatherForecastController : ControllerBase {
+	public class WeatherForecastController : Controller {
 		private readonly ISolarSystemService solarSystemService;
 
 		public WeatherForecastController(ISolarSystemService solarSystemService) {
@@ -12,18 +12,25 @@ namespace SolarSystem.Web.Controllers {
 		}
 
 		[HttpGet("clima")]
-		public IActionResult GetWeatherForDay([FromQuery] int? day) {
+		public IActionResult GetWeatherForDay([FromQuery] int? dia) {
+			int day = dia ?? 1;
 			return Ok(
 				new {
-					dia = day ?? 0,
-					clima = solarSystemService.GetWeatherForDay(day ?? 0)
+					dia = day,
+					clima = solarSystemService.GetWeatherForDay(day - 1)
 				}
 			);
 		}
 
 		[HttpGet("condiciones")]
-		public MeteorologicalConditions GetConditionsForDay([FromQuery] int? day) {
-			return solarSystemService.GetConditionsForDay(day ?? 0);
+		public MeteorologicalConditions GetConditionsForDay([FromQuery] int? dia) {
+			int day = dia ?? 1;
+			return solarSystemService.GetConditionsForDay(day - 1);
+		}
+
+		[HttpGet("sistema-solar")]
+		public IActionResult SolarSystem() {
+			return View();
 		}
 	}
 }
