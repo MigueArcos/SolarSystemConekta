@@ -5,15 +5,15 @@ const color = {
     Gray: "#AABBCC"
 };
 const RandomPlanetsData = {
-    Planet1: {
+    Ferrengi: {
         size: 50,
         color: color.Blue
     },
-    Planet2: {
+    Vulcano: {
         size: 40,
         color: color.Green
     },
-    Planet3: {
+    Betasoide: {
         size: 45,
         color: color.Gray
     }
@@ -32,6 +32,12 @@ class GameInterface {
         this.context.fillStyle = planet.color;
         this.context.arc(planet.x, planet.y, kilometersToPixels(planet.size), 0, 2 * PI);
         this.context.fill();
+        
+        this.context.font = "15px Arial";
+        this.context.fillStyle = 'black';
+        this.context.textAlign = "center";
+        this.context.fillText(planet.name, planet.x, planet.y);
+
         this.context.closePath();
     }
     drawPlanetOrbit = (distanceToSun) => {
@@ -55,7 +61,7 @@ class GameInterface {
                 x: center.x + kilometersToPixels(planetPositions[item].x),
                 y: center.y + kilometersToPixels(planetPositions[item].y),
                 ...planets.find(p => p.name === item),
-                ...RandomPlanetsData[`Planet${index + 1}`]
+                ...RandomPlanetsData[item]
             }
         }), {});
         const planetKeys = Object.keys(solarSystemState);
