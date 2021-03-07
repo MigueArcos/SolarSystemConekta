@@ -1,4 +1,5 @@
 ﻿using SolarSystem.Domain.Configuration;
+using SolarSystem.Domain.Configuration.Extensions;
 using SolarSystem.Domain.Geometry.Models;
 using SolarSystem.Domain.Models;
 using System;
@@ -41,7 +42,7 @@ namespace SolarSystem.Domain.SolarSystemService {
 			// Is a Line
 			if (triangleArea <= Constants.MaxDecimalTolerance) {
 				WeatherType weather = LineTouchOrigin(triangle.PointA, triangle.PointB) ? WeatherType.Drought : WeatherType.Nice;
-				meteorologicalConditions.Weather = weather.ToString();
+				meteorologicalConditions.Weather = weather.GetDescription();
 			}
 			// Is a triangle
 			else{
@@ -49,7 +50,7 @@ namespace SolarSystem.Domain.SolarSystemService {
 				if (weather == WeatherType.Rainy){
 					meteorologicalConditions.TrianglePerimeter = triangle.GetPerimeter();
 				}
-				meteorologicalConditions.Weather = weather.ToString();
+				meteorologicalConditions.Weather = weather.GetDescription();
 			}
 			return meteorologicalConditions;
 		}

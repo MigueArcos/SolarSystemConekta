@@ -1,5 +1,14 @@
-﻿namespace SolarSystem.Domain.Models {
+﻿using System.ComponentModel;
+
+namespace SolarSystem.Domain.Models {
 	public enum WeatherType {
-		Drought, Rainy, Normal, Nice
+		[Description("Sequía")] 
+		Drought,
+		[Description("Lluvia")]
+		Rainy,
+		[Description("Clima normal")]
+		Normal,
+		[Description("Condiciones óptimas")]
+		Nice
 	}
 }

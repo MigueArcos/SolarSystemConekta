@@ -85,7 +85,7 @@ const getConditionsForDay = day => {
         .then(res => {
             console.log(res);
             gameInterface.drawState(res.planets, res.planetPositions);
-            selectedDayLabel.innerHTML = `Dia Actual: ${currentDay}`;
+            selectedDayLabel.innerHTML = `Dia Actual: ${currentDay}, Tipo de clima: ${res.weather}`;
         });
 }
     
