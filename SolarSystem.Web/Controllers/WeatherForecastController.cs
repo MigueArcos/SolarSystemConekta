@@ -10,7 +10,7 @@ namespace SolarSystem.Web.Controllers {
 		public WeatherForecastController(ISolarSystemService solarSystemService) {
 			this.solarSystemService = solarSystemService;
 		}
-
+		[Route("")]
 		[HttpGet("clima")]
 		public IActionResult GetWeatherForDay([FromQuery] int? dia) {
 			int day = dia ?? 1;

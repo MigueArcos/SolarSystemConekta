@@ -81,7 +81,7 @@ const selectedDayLabel = document.getElementById('current-day');
 
 const getConditionsForDay = day => {
     currentDay = day;
-    return fetch(`https://localhost:44324/condiciones?dia=${day}`).then(rawReponse => rawReponse.json())
+    return fetch(`${location.origin}/condiciones?dia=${day}`).then(rawReponse => rawReponse.json())
         .then(res => {
             console.log(res);
             gameInterface.drawState(res.planets, res.planetPositions);
@@ -98,7 +98,7 @@ const getConditionsNextDay = () => {
 form.nextDay.addEventListener('click', getConditionsNextDay);
 form.addEventListener('submit', e => {
     e.preventDefault();
-    getConditionsForDay(form.dayInput.value);
+    if (form.dayInput.value !== "") getConditionsForDay(form.dayInput.value);
 });
 
 window.onload = () => {
