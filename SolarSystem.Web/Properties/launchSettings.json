@@ -1,5 +1,4 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -8,12 +7,14 @@
       "sslPort": 44324
     }
   },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "sistema-solar",
       "environmentVariables": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\Miguel\\AppData\\conekta-test-m300995-firebase-adminsdk-ke7gg-4d55134f08.json",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
@@ -21,10 +22,10 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "sistema-solar",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }
